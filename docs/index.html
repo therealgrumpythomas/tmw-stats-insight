@@ -55,10 +55,12 @@
                             return acc + row.amountChars;
                         }, 0);
 
-                        const perDayLeft = Math.round( (goal - currentCount) / (365 - dayjs(new Date()).dayOfYear()));
-                        const todayRow = newData[dayjs(new Date()).dayOfYear()] || {amountChars: 0};
+                        const dayOfYear = dayjs(new Date()).dayOfYear()
+                        const daysLeft = 365 - dayOfYear;
+                        const perDayLeft = Math.round( (goal - currentCount) / daysLeft);
+                        const todayRow = newData[dayOfYear] || {amountChars: 0};
                         console.log(newData);
-                        alert(`${currentCount} / ${goal}. Per day ${todayRow.amountChars}/${perDayLeft}`);
+                        alert(`${currentCount} / ${goal}. Behind: ${(dayOfYear * perDay) - currentCount} Per day ${todayRow.amountChars}/${perDayLeft}`);
                     }
                 })
             });
