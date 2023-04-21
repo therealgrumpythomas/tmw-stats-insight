@@ -56,7 +56,10 @@
                         }, 0);
 
                         const dayOfYear = dayjs(new Date()).dayOfYear()
-                        const daysLeft = 365 - dayOfYear;
+                        let daysLeft = 365 - dayOfYear;
+                        // weekends off
+                        let daysOff = Math.round(daysLeft / 7) * 2;
+                        daysLeft = daysLeft - daysOff;
                         const perDayLeft = Math.round( (goal - currentCount) / daysLeft);
                         const todayRow = newData[dayOfYear] || {amountChars: 0};
                         console.log(newData);
